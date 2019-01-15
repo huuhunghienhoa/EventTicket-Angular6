@@ -1,0 +1,20 @@
+/**********************
+/***** Services *******
+/*********************/
+.banner img
+{
+    width: 100px;
+    height: 110px;
+}
+.info-block
+{
+    border-right:5px solid #E6E6E6;margin-bottom:25px
+}
+.info-block .square-box
+{
+    width:100px;min-height:110px;margin-right:22px;text-align:center!important;padding:20px 0
+}
+.info-block.block-info .square-box
+{
+   color:#FFF
+}

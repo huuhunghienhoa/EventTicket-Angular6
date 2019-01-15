@@ -1,0 +1,68 @@
+<div class="col-md-12">
+<form class="form-horizontal" [formGroup] = "buyticketForm" (ngSubmit) = "submit(buyticketForm)" >
+  <fieldset>
+    <legend>Buy Ticket</legend>
+    <div class="bg-warning">{{mess}}</div>
+    {{event_id}}
+    <li class="bg-danger" *ngFor="let e of errs"><span class="bg-danger">{{e.attribute}} : {{e.reason}}</span></li>
+  <div class="form-group">
+    <label class="col-sm-3 control-label" for="quantity">Quantity</label>
+    <div class="col-sm-9">
+      <input type="number" formControlName="quantity" class="form-control" name="quantity" id="quantity" placeholder="Quantity Ticket">
+      <div *ngIf="buyticketForm.controls.quantity.invalid && (buyticketForm.controls.quantity.dirty || buyticketForm.controls.quantity.touched)"
+      class="alert alert-danger">
+      <div *ngIf="buyticketForm.controls.quantity.errors.required">Quantity is required.</div>
+      <div *ngIf="buyticketForm.controls.quantity.errors.min">Quantity must be greater than 1.</div>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label" for="card_number">Card Number</label>
+  <div class="col-sm-9">
+    <input type="text" formControlName="card_number" class="form-control" name="card_number" id="card_number" placeholder="Card Number">
+    <div *ngIf="buyticketForm.controls.card_number.invalid && (buyticketForm.controls.card_number.dirty || buyticketForm.controls.card_number.touched)"
+    class="alert alert-danger">
+    <div *ngIf="buyticketForm.controls.card_number.errors.required">Card Number is required.</div>
+  </div>
+</div>
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label" for="card_type">Card Type</label>
+  <div class="col-sm-9">
+    <select class="form-control"formControlName="card_type" name="card_type">
+      <option selected="">visa</option>
+    </select>
+    <div *ngIf="buyticketForm.controls.card_type.invalid && (buyticketForm.controls.card_type.dirty || buyticketForm.controls.card_type.touched)"
+    class="alert alert-danger">
+    <div *ngIf="buyticketForm.controls.card_type.errors.required">Card Type is required.</div>
+  </div>
+</div>
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label" for="card_expiration">Card expiration</label>
+  <div class="col-sm-9">
+    <input type="text" formControlName="card_expiration" class="form-control" name="card_expiration" placeholder="MM/YYYY">
+    <div *ngIf="buyticketForm.controls.card_expiration.invalid && (buyticketForm.controls.card_expiration.dirty || buyticketForm.controls.card_expiration.touched)"
+    class="alert alert-danger">
+    <div *ngIf="buyticketForm.controls.card_expiration.errors.required">Card expiration is required.</div>
+  </div>
+</div>
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label" for="cvc_code">Card CVC</label>
+  <div class="col-sm-9">
+    <input type="text" formControlName="cvc_code" class="form-control" name="cvc_code" id="cvc_code" placeholder="CVC Code">
+    <div *ngIf="buyticketForm.controls.cvc_code.invalid && (buyticketForm.controls.cvc_code.dirty || buyticketForm.controls.cvc_code.touched)"
+    class="alert alert-danger">
+    <div *ngIf="buyticketForm.controls.cvc_code.errors.required">Card CVC is required.</div>
+  </div>
+</div>
+</div>
+<div class="form-group">
+  <div class="col-sm-offset-3 col-sm-9">
+    <button type="submit" [disabled]="buyticketForm.invalid" class="btn btn-success">Pay Now</button>
+  </div>
+</div>
+</fieldset>
+</form>
+</div>

@@ -1,0 +1,95 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container">
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        Marcus Doe
+                    </div>
+                    <div class="profile-usertitle-job">
+                        Developer
+                    </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                    <button type="button" class="btn btn-success btn-sm">Follow</button>
+                    <button type="button" class="btn btn-danger btn-sm">Message</button>
+                    <a routerLink="/logout" class="btn btn-warring btn-sm" title="Logout">Thoát</a>
+                </div>
+                <!-- END SIDEBAR BUTTONS -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="#">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Overview </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <i class="glyphicon glyphicon-user"></i>
+                            Account Settings </a>
+                        </li>
+                         <li>
+                            <a routerLink="/admin/events">
+                            <i class="glyphicon glyphicon-ok"></i>
+                            Danh sách sự kiện</a>
+                        </li>
+                        <li>
+                            <a routerLink="/admin/addevent">
+                            <i class="glyphicon glyphicon-flag"></i>
+                            Tạo sự kiện mới</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+                <div class="row" style="display: none;">
+                    <div class="col-xs-12">
+                        <div class="input-group c-search">
+                            <input type="text" class="form-control" id="contact-list-search">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search text-muted"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>              
+                <ul class="list-group" id="contact-list">
+                    <li class="list-group-item" *ngFor="let event of events">
+                        <div class="col-xs-12 col-sm-3">
+                            <img src="{{event.banner}}" alt="{{event.name}}" class="img-responsive img-circle" />
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <span class="name">{{event.name}} - {{event.id}}</span><br/>
+                            <span (click)="deleteEvent(event)" class="glyphicon glyphicon-trash text-muted c-info" data-toggle="tooltip" title="Delete"></span>
+                            <span class="visible-xs"> <span class="text-muted">5842 Hillcrest Rd</span><br/></span>
+                            <span routerLink="/admin/event/{{event.id}}" class="glyphicon glyphicon-eye-open text-muted c-info" data-toggle="tooltip" title="View"></span>
+                            <span class="visible-xs"> <span class="text-muted">(870) 288-4149</span><br/></span>
+                            <span routerLink="/admin/event/{{event.id}}/edit" class="glyphicon glyphicon-edit text-muted c-info" data-toggle="tooltip" title="Edit"></span>
+
+                            <span (click)="showbuyTicket(event)" class="glyphicon glyphicon-shopping-cart text-muted c-info" data-toggle="tooltip" title="Buy"></span>
+                            <!-- <span routerLink="/buy-ticket/{{event.id}}" class="glyphicon glyphicon-shopping-cart text-muted c-info" data-toggle="tooltip" title="Buy"></span> -->
+
+                            <span class="visible-xs"> <span class="text-muted">scott.stevens@example.com</span><br/></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                   
+                </ul>
+        </div>
+        <div class="col-md-3" *ngIf="event">
+            <app-buy-ticket [event_id] = "event.id"></app-buy-ticket>
+        </div>
+	</div>
+</div>

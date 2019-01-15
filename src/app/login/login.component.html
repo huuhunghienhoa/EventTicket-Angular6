@@ -1,0 +1,45 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!--
+    you can substitue the span of reauth email for a input with the email and
+    include the remember me checkbox
+-->
+<div class="container">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form [formGroup] = "loginForm" (ngSubmit) = "submit(loginForm)" class="form-signin">
+            <span id="reauth-email" class="reauth-email"></span>
+            
+            <input type="email" formControlName="username" id="inputEmail" class="form-control" placeholder="User name" required autofocus>
+            <div *ngIf="loginForm.controls.username.invalid && (loginForm.controls.username.dirty || loginForm.controls.username.touched)"
+            class="alert alert-danger">
+
+            <div *ngIf="loginForm.controls.username.errors.required">
+                Name is required.
+            </div>
+        </div>
+        <input type="password" formControlName="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="loginForm.controls.password.errors.required">
+            Password is required.
+        </div>
+    </div>
+    <div id="remember" class="checkbox">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" [disabled]="loginForm.invalid">Sign in</button>
+</form><!-- /form -->
+<span class="bg-danger">{{USERNAME_PASSWORD_NOT_MATCHED}}</span>
+<a routerLink="/register" class="forgot-password">
+    Register
+</a>
+</div><!-- /card-container -->
+    </div><!-- /container -->

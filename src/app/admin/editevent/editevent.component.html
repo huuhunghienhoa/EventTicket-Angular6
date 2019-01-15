@@ -1,0 +1,193 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container">
+  <div class="row profile">
+    <div class="col-md-3">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        Marcus Doe
+                    </div>
+                    <div class="profile-usertitle-job">
+                        Developer
+                    </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                    <button type="button" class="btn btn-success btn-sm">Follow</button>
+                    <button type="button" class="btn btn-danger btn-sm">Message</button>
+                    <a routerLink="/logout" class="btn btn-warring btn-sm" title="Logout">Thoát</a>
+                </div>
+                <!-- END SIDEBAR BUTTONS -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="#">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Overview </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <i class="glyphicon glyphicon-user"></i>
+                            Account Settings </a>
+                        </li>
+                        <li>
+                            <a routerLink="/admin/events">
+                            <i class="glyphicon glyphicon-ok"></i>
+                            Danh sách sự kiện</a>
+                        </li>
+                        <li>
+                            <a routerLink="/admin/addevent">
+                            <i class="glyphicon glyphicon-flag"></i>
+                            Tạo sự kiện mới</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+      </div>
+    <div class="col-md-6">
+      <form class="form-horizontal" [formGroup] = "eventForm" (ngSubmit) = "submit(eventForm)">
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="name">Name</label>  
+            <div class="col-md-8">
+              <input id="title" formControlName="name" name="name" type="text" placeholder="Title" class="form-control input-md">
+              <div *ngIf="eventForm.controls.name.invalid  && (eventForm.controls.name.dirty || eventForm.controls.name.touched)"
+              class="bg-danger">
+              <div *ngIf="eventForm.controls.name.errors.required">
+                Name is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="description">Description</label>  
+          <div class="col-md-8">
+            <input id="description" formControlName="description" name="description" type="text" placeholder="Description" class="form-control input-md">
+            <div *ngIf="eventForm.controls.description.invalid  && (eventForm.controls.description.dirty || eventForm.controls.description.touched)"
+            class="bg-danger">
+            <div *ngIf="eventForm.controls.description.errors.required">
+              Description is required.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="ticket_total">Ticket Total</label>  
+        <div class="col-md-4">
+          <input id="ticket_total" formControlName="ticket_total" name="ticket_total" type="number" placeholder="Ticket Total" class="form-control input-md">
+          <div *ngIf="eventForm.controls.ticket_total.invalid  && (eventForm.controls.ticket_total.dirty || eventForm.controls.ticket_total.touched)"
+          class="bg-danger">
+          <div *ngIf="eventForm.controls.ticket_total.errors.required">
+            Ticket Total is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="ticket_price">Ticket price</label>  
+      <div class="col-md-2">
+        <input id="ticket_price" formControlName="ticket_price" name="ticket_price" type="number" placeholder="10" class="form-control input-md">
+        <div *ngIf="eventForm.controls.ticket_price.invalid  && (eventForm.controls.ticket_price.dirty || eventForm.controls.ticket_price.touched)"
+        class="bg-danger">
+        <div *ngIf="eventForm.controls.ticket_price.errors.required">
+          Ticket Price is required.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="banner">Banner</label>  
+    <div class="col-md-8">
+      <input id="banner" name="banner" formControlName="banner" type="url" placeholder="http://" class="form-control input-md">
+      <div *ngIf="eventForm.controls.banner.invalid  && (eventForm.controls.banner.dirty || eventForm.controls.banner.touched)"
+      class="bg-danger">
+      <div *ngIf="eventForm.controls.banner.errors.required">
+        Banner is required.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="start_date">Start Date</label>  
+  <div class="col-md-8">
+    <input id="start_date" formControlName="start_date" name="start_date" type="text" placeholder="yyyy-mm-dd" class="form-control input-md">
+    <div *ngIf="eventForm.controls.start_date.invalid  && (eventForm.controls.start_date.dirty || eventForm.controls.start_date.touched)"
+      class="bg-danger">
+      <div *ngIf="eventForm.controls.start_date.errors.required">
+        Start Date is required.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="end_date">End Date</label>  
+  <div class="col-md-8">
+    <input id="end_date" formControlName="end_date" name="end_date" type="text" placeholder="yyyy-mm-dd" class="form-control input-md">
+    <div *ngIf="eventForm.controls.end_date.invalid  && (eventForm.controls.end_date.dirty || eventForm.controls.end_date.touched)"
+      class="bg-danger">
+      <div *ngIf="eventForm.controls.end_date.errors.required">
+        Banner is required.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="ticket_start_date">Ticket start date</label>  
+  <div class="col-md-4">
+    <input formControlName="ticket_start_date" name="ticket_start_date" type="text" placeholder="yyyy-mm-dd" class="form-control input-md">
+    <div *ngIf="eventForm.controls.ticket_start_date.invalid  && (eventForm.controls.ticket_start_date.dirty || eventForm.controls.ticket_start_date.touched)"
+      class="bg-danger">
+      <div *ngIf="eventForm.controls.ticket_start_date.errors.required">
+        ticket_start_date required.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="ticket_end_date">Ticket end date</label>  
+  <div class="col-md-8">
+    <input formControlName="ticket_end_date" name="ticket_end_date" type="text" placeholder="yyyy-mm-dd" class="form-control input-md">
+    <div *ngIf="eventForm.controls.ticket_end_date.invalid  && (eventForm.controls.ticket_end_date.dirty || eventForm.controls.ticket_end_date.touched)"
+      class="bg-danger">
+      <div *ngIf="eventForm.controls.ticket_end_date.errors.required">
+        ticket_end_date required.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id">Double Button</label>
+  <div class="col-md-8">
+    <button type="submit" [disabled]="eventForm.invalid" name="button1id" class="btn btn-success">Create</button>
+  </div>
+</div>
+</form>
+</div>
+<div class="col-md-3">
+  <li class="bg-danger" *ngFor="let e of errs">
+     {{e.attribute}} : {{e.reason}}
+  </li>
+   <li class="bg-success" *ngIf="success">
+     {{success}}
+  </li>
+</div>
+</div>

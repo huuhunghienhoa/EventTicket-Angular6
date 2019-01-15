@@ -1,0 +1,89 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container">
+  <div class="row profile">
+    <div class="col-md-3">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        Marcus Doe
+                    </div>
+                    <div class="profile-usertitle-job">
+                        Developer
+                    </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                    <button type="button" class="btn btn-success btn-sm">Follow</button>
+                    <button type="button" class="btn btn-danger btn-sm">Message</button>
+                    <a routerLink="/logout" class="btn btn-warring btn-sm" title="Logout">Thoát</a>
+                </div>
+                <!-- END SIDEBAR BUTTONS -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="#">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Overview </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <i class="glyphicon glyphicon-user"></i>
+                            Account Settings </a>
+                        </li>
+                        <li>
+                            <a routerLink="/admin/events">
+                            <i class="glyphicon glyphicon-ok"></i>
+                            Danh sách sự kiện</a>
+                        </li>
+                        <li>
+                            <a routerLink="/admin/addevent">
+                            <i class="glyphicon glyphicon-flag"></i>
+                            Tao su kien moi</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+      </div>
+    <div class="col-md-9">
+      <li *ngIf= "event"> 
+        <div class="col-md-12">
+            <div class="well well-sm">
+               <strong>Total:</strong> {{currentTotal}}
+                <div class="row">
+                    <div class="col-xs-3 col-md-3 text-center">
+                        <img id="img_event" src="{{event.banner}}" />
+                    </div>
+                    <div class="col-xs-9 col-md-9 section-box">
+                        <h2>
+                            {{event.name}} <a href="http://bootsnipp.com/" target="_blank"><span class="glyphicon glyphicon-new-window">
+                            </span></a> (ID: {{event.id}})
+                        </h2>
+                        <p>
+                           {{event.description}}</p>
+                        <hr />
+                        <div class="row rating-desc">
+                            <div class="col-md-12">
+                                <span class="glyphicon glyphicon-heart"></span>{{event.ticket_total}}<span class="separator">|</span>
+                                <span class="glyphicon glyphicon-comment"></span>(100 Comments)<span class="separator">|</span><span class="glyphicon glyphicon-usd"></span>{{event.ticket_price}}
+                                <span class="separator">|</span><span class="glyphicon glyphicon-calendar"></span>Start date: {{event.start_date  | date:'d/M/yyyy'}}
+                                <span class="separator">|</span><span class="glyphicon glyphicon-calendar"></span>End start: {{event.end_date  | date:'d/M/yyyy'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </li>
+     <div class="alert bg-danger" *ngIf="errs">
+     {{errs}}
+  </div>
+    </div>
+</div>
